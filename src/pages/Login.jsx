@@ -40,7 +40,7 @@ function Login() {
         <div className="w-full mb-4">
           <h3 className='text-lg'>Email:</h3>
           <input type="text" className="text-xl p-2 rounded-lg w-full outline-none"
-          value={email} onChange={(e)=>setEmail(e.target.value)} />
+          value={email} onChange={(e)=>setEmail(e.target.value.toLowerCase())} />
         </div>
 
         <div className="w-full mb-9">

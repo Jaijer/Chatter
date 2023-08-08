@@ -13,7 +13,7 @@ function Contact(props) {
         <div>
             <div onClick={()=>{
               setContactedWith(props.name);
-              setIsHamburger((prev)=>!prev)
+              setIsHamburger(false);
             }}
             className='flex items-center bg-skyBlue bg-opacity-30 border-t-2 border-gray-200 gap-2 group p-2 hover:cursor-pointer'>
                 <FcBusinessContact className='text-4xl group-hover:scale-110 transition-all' />

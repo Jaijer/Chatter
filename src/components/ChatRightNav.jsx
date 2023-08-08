@@ -8,7 +8,7 @@ function ChatRightNav() {
 
   return (
     <div className='h-[11%]'>
-      <div className="flex justify-between md:justify-center items-center p-3 h-full bg-grayBlue rounded-r-2xl rounded-t-2xl md:rounded-l-none rounded-b-none">
+      <div className="flex justify-between md:justify-center items-center p-3 h-full bg-grayBlue rounded-t-2xl md:rounded-l-none">
           <IoMdMenu onClick={()=>setIsHamburger((prev)=>!prev)}
           className='block md:hidden text-5xl transition-all hover:scale-110 hover:cursor-pointer text-gray-200 p-1'/>
 

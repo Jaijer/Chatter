@@ -7,10 +7,10 @@ import { AuthContext } from '../context/AuthContext'
 
 
 function ChatPanel() {
-    const {isHamburger} = useContext(AuthContext);
+    const {isHamburger, signingUp} = useContext(AuthContext);
     const user = auth.currentUser;
 
-    if(!user?.email) {
+    if(!user?.email || signingUp) {
         return <Spinner />
     }
 
@@ -18,7 +18,7 @@ function ChatPanel() {
     return (
 
         <div className="bg-opacity-80 h-[90%] md:h-[600px] w-96 md:w-[700px] lg:w-[900px] select-none flex">
-            <div className={(isHamburger?'block':'hidden md:block') + (" w-full md:w-1/3 h-full bg-deepBlue rounded-2xl md:rounded-r-none overflow-y-scroll no-scrollbar border-r-4 border-gray-200")}>
+            <div className={(isHamburger?'block':'hidden md:block') + (" w-full md:w-1/3 h-full bg-deepBlue rounded-2xl md:rounded-r-none border-r-4 border-gray-200")}>
                 <ChatLeftSide />
             </div>
 

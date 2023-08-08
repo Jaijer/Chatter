@@ -15,7 +15,7 @@ import {RiChatSmile2Line} from 'react-icons/ri'
 function Signup() {
   const navigate = useNavigate();
 
-  const {users} = useContext(AuthContext);
+  const {users, setContactedWith, setSigningUp} = useContext(AuthContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,6 +26,7 @@ function Signup() {
   const signUp = async (e) => {
     try {
       e.preventDefault();
+      setSigningUp(true);
       setLoading(true);
       await createUserWithEmailAndPassword(auth, email, password);
       
@@ -35,17 +36,24 @@ function Signup() {
         uid: uid,
       })
 
-      users.map(async (user)=> {
-        const chat = doc(db, 'chats', user.uid + uid)
+      let i = 0;
+      await users.map(async (user)=> {
+        const chat = doc(db, 'chats', user.uid + uid);
         await setDoc(chat, 
           {
             id: user.uid + uid,
             messages: [],
             senderId: [],
         })
+  
+        i++;
+        if(users.length == i) {
+          navigate('/')
+          setSigningUp(false);
+          location.reload();
+        }
       })
       
-      navigate('/')
     } catch (error) {
       console.log(error)
       setLoading(false);
@@ -68,7 +76,7 @@ function Signup() {
         <div className="w-full mb-4">
           <h3 className='text-lg'>Email:</h3>
           <input type="text" className="text-xl p-2 rounded-lg w-full outline-none"
-          value={email} onChange={(e)=>setEmail(e.target.value)} />
+          value={email} onChange={(e)=>setEmail(e.target.value.toLowerCase())} />
         </div>
 
         <div className="w-full mb-9">

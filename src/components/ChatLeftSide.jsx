@@ -9,12 +9,14 @@ import Contacts from './Contacts'
 
 function ChatLeftSide() {
     const {setContactedWith, setIsHamburger} = useContext(AuthContext);
+    let userName = auth?.currentUser?.email.slice(0, auth?.currentUser?.email.indexOf('@'));
+
     return (
         <>
             <div className="flex justify-between items-center p-3 h-[11%]">
                 <div className="hidden md:flex gap-2 items-center text-gray-200 drop-shadow-lg">
                     <CgProfile className='text-4xl' />
-                    <h3 className='font-semibold text-lg select-text'>{auth?.currentUser?.email.slice(0, auth?.currentUser?.email.indexOf('@'))}</h3>
+                    <h3 className='font-semibold text-lg select-text hidden lg:block'>{userName}</h3>
                 </div>
                 <MdOutlineClose onClick={()=>setIsHamburger((prev)=>!prev)}
                 className='block md:hidden text-5xl transition-all hover:scale-110 hover:cursor-pointer font-bold text-gray-200 p-1'/>
@@ -25,8 +27,9 @@ function ChatLeftSide() {
                     }}>Log out</button> 
             </div>
 
-
-            <Contacts />
+            <div className="h-[89%]">
+                <Contacts />
+            </div>
         </>
     )
 }

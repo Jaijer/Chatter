@@ -18,6 +18,7 @@ export const AuthProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState({});
     const [contactedWithUser, setContactedWithUser] = useState({});
     const [isHamburger, setIsHamburger] = useState(true);
+    const [signingUp, setSigningUp] = useState(false);
 
     const navigate = useNavigate();
 
@@ -88,7 +89,9 @@ export const AuthProvider = ({children}) => {
         contactedWithUser,
         setContactedWithUser,
         isHamburger,
-        setIsHamburger
+        setIsHamburger,
+        signingUp,
+        setSigningUp
     }}>
         {children}
     </AuthContext.Provider>
